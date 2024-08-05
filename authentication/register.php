@@ -51,7 +51,7 @@ session_start();
             <div class="logo">
                 <a href="index.html">Neptune</a>
             </div>
-            <p class="auth-description">Please enter your credentials to create an account.<br>Already have an account? <a href="sign-in.html">Sign In</a></p>
+            <p class="auth-description">Please enter your credentials to create an account.<br>Already have an account? <a href="signin.php">Sign In</a></p>
 
             <!-- form start -->
 
@@ -62,11 +62,11 @@ session_start();
             <!-- username start -->
             
                 <label for="signUpUsername" class="form-label">Name</label>
-                <input name= "username" type="text" class="form-control m-b-md" id="signUpUsername" aria-describedby="signUpUsername" placeholder="Enter Name">
+                <input name= "username" type="text" class="form-control m-b-md" id="signUpUsername" aria-describedby="signUpUsername" placeholder="Enter Name" value="<?=(isset($_SESSION["old-username"])) ?  $_SESSION["old-username"] : " " ; unset($_SESSION["old-username"]); ?>">
 
             <!-- name-error -->
-             <?php if(isset($_SESSION["username-error"])){?>
-               
+
+            <?php if(isset($_SESSION["username-error"])){?> 
             <div style="color:red;" id="emailHelp" class="form-text m-b-md"><?php echo  $_SESSION["username-error"];?>*</div>
             <?php } unset($_SESSION["username-error"]);?> 
 
@@ -75,21 +75,39 @@ session_start();
             <!-- email start -->
 
                 <label for="signUpEmail" class="form-label">Email address</label>
-                <input name="email" type="email" class="form-control m-b-md" id="signUpEmail" aria-describedby="signUpEmail" placeholder="example@neptune.com">
+                <input name="email" type="text" class="form-control m-b-md" id="signUpEmail" aria-describedby="signUpEmail" placeholder="example@neptune.com" value="<?= (isset( $_SESSION["old-email"])) ?  $_SESSION["old-email"] : " " ; unset( $_SESSION["old-email"]);?>">
+
+            <!-- email error -->
+
+               <?php if(isset($_SESSION["email-error"])){?>
+               <div style="color:red;" id="emailHelp" class="form-text m-b-md"><?php echo  $_SESSION["email-error"];?>*</div>
+               <?php } unset($_SESSION["email-error"]);?>    
 
             <!-- email end -->
 
             <!-- password start -->
 
                 <label for="signUpPassword" class="form-label">Password</label>
-                <input name="password" type="password" class="form-control" id="signUpPassword" aria-describedby="signUpPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                <input name="password" type="text" class="form-control" id="signUpPassword" aria-describedby="signUpPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION["old-password"])) ? $_SESSION["old-password"] : "" ; unset($_SESSION["old-password"])?>">
+
+                <!-- password error -->
+
+                <?php if(isset($_SESSION["pass-error"])){?>
+               <div style="color:red;" id="emailHelp" class="form-text m-b-md"><?php echo  $_SESSION["pass-error"];?>*</div>
+               <?php } unset($_SESSION["pass-error"]);?>
 
                 <!-- password end -->
 
                 <!-- confirm password start -->
 
                 <label for="signUpPassword" class="form-label">Confirm Password</label>
-                <input name="confirm-password" type="password" class="form-control" id="signUpPassword" aria-describedby="signUpPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                <input name="confirm-password" type="text" class="form-control" id="signUpPassword" aria-describedby="signUpPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" value="<?= (isset($_SESSION["old-con-password"])) ? $_SESSION["old-con-password"] : "" ; unset($_SESSION["old-con-password"])?>">
+
+                <!-- confirm pass error -->
+
+                <?php if(isset($_SESSION["confirm-pass-error"])){?>
+               <div style="color:red;" id="emailHelp" class="form-text m-b-md"><?php echo  $_SESSION["confirm-pass-error"];?>*</div>
+               <?php } unset($_SESSION["confirm-pass-error"]);?>
 
                 <!-- confirm password end -->
             </div>
